@@ -23,18 +23,21 @@ Game::Game(Player& player){
         check_name(player.getName());
         player_1 = &player;
         
-        AI* computer = new AI(O, "COMPUTER");
+        AI* computer = new AI("COMPUTER");
+        computer->setSymbolToO();
         //std::cout << "In const" << computer->getsymbol() << std::endl;
         //sleep(3);
         player_2 = computer;
         
         
     } else {
+        AI* computer = new AI("COMPUTER");
+        computer->setSymbolToX();
+        player_1 = computer;
+
         player.setSymbolToO();
         player_2 = &player;
         
-        AI* computer = new AI(X, "COMPUTER");
-        player_1 = computer;
         
     }
 }
@@ -155,10 +158,7 @@ bool Game::check_winner(){
 
 
 void Game::start_game() {
-    if ((this->player_1)->getsymbol() == (this->player_2)->getsymbol()) {
-        std::cout << "Check the symbols of the players!" << std::endl;
-        return; 
-    }
+    
     system("clear");
     std::cout << "Starting the game" << std::endl << std::endl;
     init_field();
@@ -170,7 +170,7 @@ void Game::start_game() {
 
     while(1) {
         //----------------PLAYER 1----------------------------------------
-        std::cout << "Player " << player_1->getName() << " is playing now!" << player_1->getsymbol() << std::endl;
+        std::cout << "Player " << player_1->getName() << " is playing now!" << std::endl;
         //sleep(2);
         while(found == false) {
             if (player_1->getName() != "COMPUTER")

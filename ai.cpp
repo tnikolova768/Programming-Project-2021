@@ -13,34 +13,12 @@ int AI::bestMove(std::string field[][3], std::string ai){
         std::string past;
         int move;
         
-
-
         for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                         if (field[i][j] != "O" && field[i][j] != "X") {
                                 past = field[i][j];
                                 field[i][j] = this->getsymbol();
                                 int score = minimax(field, 0, false);
-                         /*std::cout << "+---+---+---+" << std::endl;
-                                std::cout << "| ";
-                                for(int i = 0; i < 3; i++){
-                                        for(int k = 0; k < 3; k++){
-                                        std::cout << field[i][k] << " | ";
-                                        }
-                                        std::cout << std::endl;
-                                        std::cout << "+---+---+---+" << std::endl;
-                                        if(i != 2) {
-                                        std::cout << "| ";
-                                        }
-                                }
-                               std::cout << score << std::endl;
-                               std::cout << past << std::endl;
-                               std::cout << bestScore << std::endl;
-                               std::cout << move << std::endl;
-                               sleep(2);
-                                      */                          //sleep(4000);
-                                //std::cout << score << std::endl;
-                                //sleep(4000);
                                 field[i][j] = past;
                                 if (score > bestScore) {
                                         bestScore = score;
@@ -52,8 +30,8 @@ int AI::bestMove(std::string field[][3], std::string ai){
 
 
         //sleep(4000);
-       // std::cout << "Move = " << move << std::endl;
-       // sleep(5);
+       //std::cout << "Move = " << move << std::endl;
+       //sleep(5);
 
         return move;
 }
