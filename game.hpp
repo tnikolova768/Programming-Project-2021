@@ -6,22 +6,22 @@
 
 
 class Game{
-    std::string field[3][3];
+    std::string field[3][3]; // полето за игра
     
-    Player* player_1;
+    Player* player_1; // двамата играчи
     Player* player_2;
 
-    void init_field();
-    void print_field();
-    bool check_winner();
+    void init_field(); // генериране на полето
+    void print_field(); // принтиране на състоянието на полето
+    bool check_winner(); // проверка, дали имаме победител
     
 public:
-    Game(Player& player);
-    Game(Player& player1, Player& player2);
+    Game(Player& player); // singleplay
+    Game(Player& player1, Player& player2); // multiplayer
 
-    void start_game();
-    void play_again();
-    void check_name(std::string name);
+    void start_game(); // стартиране на играта
+    void play_again(); // повторно стартиране и изчистване на полето
+    void check_name(std::string name); // проверка, дали е спазено правилото за име
 
 };
 

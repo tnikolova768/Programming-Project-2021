@@ -8,6 +8,8 @@ int AI::make_turn() {
 }
 
 
+// от тук намираме възможно най-благоприятният ход за AI-я
+// подаваме борда и символа, с който играе компютърът
 int AI::bestMove(std::string field[][3], std::string ai){
         int bestScore = -999999;
         std::string past;
@@ -19,6 +21,28 @@ int AI::bestMove(std::string field[][3], std::string ai){
                                 past = field[i][j];
                                 field[i][j] = this->getsymbol();
                                 int score = minimax(field, 0, false);
+                                /*
+                                std::cout << "+---+---+---+" << std::endl;
+                                std::cout << "| ";
+                                for(int i = 0; i < 3; i++){
+                                        for(int k = 0; k < 3; k++){
+                                        std::cout << field[i][k] << " | ";
+                                        }
+                                        std::cout << std::endl;
+                                        std::cout << "+---+---+---+" << std::endl;
+                                        if(i != 2) {
+                                        std::cout << "| ";
+                                        }
+                                }
+                               std::cout << "Return value of the unitily function " << score << std::endl;
+                               //std::cout << past << std::endl;
+                               //std::cout << bestScore << std::endl;
+                               std::cout << "Best position: " << move << std::endl;
+                               sleep(2);
+                               */
+                                                                //sleep(4000);
+                                //std::cout << score << std::endl;
+                                //sleep(4000);
                                 field[i][j] = past;
                                 if (score > bestScore) {
                                         bestScore = score;
@@ -37,8 +61,10 @@ int AI::bestMove(std::string field[][3], std::string ai){
 }
 
 
-
-
+// алгоритъм за търсене в дълбочина на най-добрите ходове в играта
+// depth - в каква дълбочина ще търсим, тоест колко хода напред
+// подаваме му борда за игра
+// isMaximazing e, ако е ред на компютъра - той е макс, ако е ред на човека - тогава е мин, тоест подаваме false
 int AI::minimax(std::string board[][3], int depth, bool isMaximazing) {
         std::string past;
         std::string res = checkWinner(board);
@@ -106,10 +132,8 @@ int AI::minimax(std::string board[][3], int depth, bool isMaximazing) {
         
 }
 
+// проверка, дали играта е приключила и ако да - кой е победил?
 std::string AI::checkWinner(std::string field[][3]) {
-
-
-
     for (int i = 0; i < 3; i++) {
         if (field[i][0] == field[i][1]) {
             if (field[i][0] == field[i][2]) {
@@ -148,10 +172,8 @@ std::string AI::checkWinner(std::string field[][3]) {
             }
    }
    if (tie) {
-           return "tie";
+        return "tie";
    }
-
-
 
     return "false";
 }
