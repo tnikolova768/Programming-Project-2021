@@ -3,27 +3,27 @@
 
 #include <iostream>
 
-// двата символа, които участват в играта
+// the 2 symbols -> X and O
 
 enum Sign {
     O, X 
 };
 
-// class Player, който съдържа атрибути, които ще бъдат наследени от Human и AI
 
+// basic class Player
 class Player{
     std::string name;
     Sign symbol;
 public:
     Player(std::string name);
 
-    std::string getsymbol(); // взимаме символа на играча
+    std::string getsymbol(); // get the symbol of the player
 
-    std::string getName(); // взимаме името на играча
-    void setSymbolToO(); // сетваме символа на играча
-    void setSymbolToX(); // сетваме символа на играча
+    std::string getName(); // get the name of the player
+    void setSymbolToO(); // setting the symbol
+    void setSymbolToX(); // setting the symbol
 
-    // тази функции ще бъде пренаписани в завивимост дали съм AI или Human
+    // virtual functions for Player and the AI class
     virtual int make_turn() = 0; 
     virtual int bestMove(std::string field[][3], std::string ai) = 0;
 

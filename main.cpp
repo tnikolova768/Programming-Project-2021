@@ -13,6 +13,6 @@ int main(){
     Game new_game1(p1);
     new_game1.start_game();
 
-    // в зависимост от това, колко аргумента подадем на Game, такава игра ще се стартира
+    // We start 2 different gamemodes depends on how many args we pass to the game object
 
 }

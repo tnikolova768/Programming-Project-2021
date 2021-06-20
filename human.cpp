@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 
-// Игране на ход, всеки играч си избира цифра, където да постави символа си
+// Each turn, the player is choosing a place between 1-9
 int Human::make_turn(){
     int place;
     std::cout << "Choose place to put '" << getsymbol() << "': " << std::endl;
@@ -11,7 +11,7 @@ int Human::make_turn(){
     return place;
 }
 
-// Човекът няма функция да търси за най-добър ход
+// This function is only for the AI player
 int Human::bestMove(std::string field[][3], std::string ai) {
     return 0;
 }

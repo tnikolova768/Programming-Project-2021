@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include <unistd.h>
 
-// Играчите нямат право да се казват COMPUTER
+// username COMPUTER is forbidden
 void Game::check_name(std::string name) {
     if (name == "COMPUTER") {
         std::cout << "Invalid player name" << std::endl;
@@ -10,10 +10,10 @@ void Game::check_name(std::string name) {
 }
 
 
-// Създаване и започване на играта, single play
+// Create a single play game
 Game::Game(Player& player){
     srand(time(NULL));
-    // ако е подаден един играч, създаваме AI и по случаен начин определяме кой играе пръв
+    // if one player is passed, we create AI and randomize who is first
     int order = rand()%(2 - 1 + 1) + 1;
     if(order == 1) {
         player.setSymbolToX();
@@ -35,10 +35,10 @@ Game::Game(Player& player){
 }
 
 
-// multiplayer, подадени са ни двамата играчи, които ще играят един срещу друг
+// multiplayer, we have 2 players passed as args
 Game::Game(Player& player1, Player& player2){
     srand(time(NULL));
-    // на случаен принцип определяме, кой ще бъде пръв
+    // randomize who is first
     check_name(player1.getName());
     check_name(player2.getName());
     int order = rand()%(2 - 1 + 1) + 1;
@@ -57,7 +57,7 @@ Game::Game(Player& player1, Player& player2){
 
 
 
-// Генерираме полето за игра, матрица 3x3
+// generate the field, matrix 3x3
 void Game::init_field(){
     int count = 1;
     for(int i = 0; i < 3; i++){
@@ -71,7 +71,7 @@ void Game::init_field(){
 
 
 
-// Функция за принтиране на текущото състояние на полето за игра
+// Printing the current state of the game
 void Game::print_field(){
     std::cout << "+---+---+---+" << std::endl;
     std::cout << "| ";
@@ -88,7 +88,7 @@ void Game::print_field(){
 }
 
 
-// Проверка, дали имаме победител в играта
+// check if there is a winner
 bool Game::check_winner(){
     for(int i = 0; i < 3; i++) {
         if(field[i][0] == field[i][1]) {
@@ -162,7 +162,7 @@ bool Game::check_winner(){
 
 
 
-// стартираме играта
+// start the game
 void Game::start_game() {
     
     system("clear");
@@ -173,11 +173,10 @@ void Game::start_game() {
     bool found = false;
     int place;
 
-    // Цикъл, който постоянно се върти за ходовете на двамата играчи
+    // loop for the the game
     while(1) {
         //----------------PLAYER 1----------------------------------------
         std::cout << "Player " << player_1->getName() << " is playing now!" << std::endl;
-        //sleep(2);
         while(found == false) {
             if (player_1->getName() != "COMPUTER")
                 place = player_1->make_turn();
@@ -228,7 +227,7 @@ void Game::start_game() {
         found = false;
         system("clear");
         print_field();
-        // ако се открие победител - играта приключва
+        // if there is a winner, the game is over
         if(check_winner()) {
             std::cout << "GAME OVER" << std::endl;
             print_field();
@@ -239,7 +238,7 @@ void Game::start_game() {
 
 
 
-// Функция за стартиране на нова игра, след като е приключила първата
+// function to start a new game, if needed
 void Game::play_again() {
     std::string ans;
     std::cout << "Do you want to play again? (y/n)" << std::endl;

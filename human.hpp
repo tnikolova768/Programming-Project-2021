@@ -4,7 +4,7 @@
 #include "player.hpp"
 #include "game.hpp"
 
-// Human наследява Player и атрибутите му
+// Human inheris the basic class Player and its attributes 
 class Human: public Player{
 
 public:
