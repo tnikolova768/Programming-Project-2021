@@ -42,7 +42,7 @@ int AI::minimax(std::string board[][3], int depth, bool isMaximazing) {
         std::string past;
         std::string res = checkWinner(board);
         if (this->getsymbol() == "O") {
-                if (res != "false") {
+                if (res) {
                         if (res == "X") {
                                 return -1;
                         } else if (res == "O") {
@@ -52,7 +52,7 @@ int AI::minimax(std::string board[][3], int depth, bool isMaximazing) {
                         }
                 }
         } else {
-               if (res != "false") {
+               if (res) {
                         if (res == "X") {
                                 return 1;
                         } else if (res == "O") {
@@ -148,5 +148,5 @@ std::string AI::checkWinner(std::string field[][3]) {
         return "tie";
    }
 
-    return "false";
+    return false;
 }
